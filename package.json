@@ -1,0 +1,23 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "node run.js",
+    "jest": "jest src/*.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^26.6.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuanzili/leetcode.git"
+  },
+  "author": "lizhiyuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuanzili/leetcode/issues"
+  },
+  "homepage": "https://github.com/yuanzili/leetcode#readme"
+}
