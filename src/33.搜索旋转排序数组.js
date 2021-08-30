@@ -46,9 +46,11 @@ const search = (nums, target) => {
   while (left <= right) {
       const mid = (left + right) >> 1;
       if (nums[mid] === target) return mid;
+      if(nums[left] === target) return left
+      if(nums[right] === target) return right
       if (nums[left] < nums[mid]) {
           // 左边是升序的
-          if (nums[left] <= target && target <= nums[mid]) {
+          if (nums[left] < target && target < nums[mid]) {
               // target在升序的里面
               right = mid - 1;
           } else {
@@ -57,7 +59,7 @@ const search = (nums, target) => {
           }
       } else {
           // 右边升序
-          if (nums[mid] <= target && target <= nums[right]) {
+          if (nums[mid] < target && target < nums[right]) {
               // target在升序的里面
               left = mid + 1;
           } else {
@@ -66,7 +68,7 @@ const search = (nums, target) => {
           }
       }
   }
-  return nums[left + 1] === target ? left + 1 : -1;
+  return  -1;
 };
 // @lc code=end
 
