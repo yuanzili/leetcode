@@ -34,8 +34,5 @@ var maxSubArray = function(nums) {
   }
 
   return max
-
-  
- }
 // @lc code=end
 
