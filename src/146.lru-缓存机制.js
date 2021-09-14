@@ -8,39 +8,64 @@
 /**
  * @param {number} capacity
  */
-var LRUCache = function(capacity) {
-  this.map = new Map()
-  this.capacity = capacity
+// var LRUCache = function (capacity) {
+//   this.map = new Map();
+//   this.capacity = capacity;
+// };
+
+// /**
+//  * @param {number} key
+//  * @return {number}
+//  */
+// LRUCache.prototype.get = function (key) {
+//   const value = this.map.get(key);
+//   if (typeof value === "undefined") return -1;
+//   this.map.delete(key);
+//   this.map.set(key, value);
+//   return value;
+// };
+
+// /**
+//  * @param {number} key
+//  * @param {number} value
+//  * @return {void}
+//  */
+// LRUCache.prototype.put = function (key, value) {
+//   if (this.map.has(key)) {
+//     this.map.delete(key);
+//   }
+//   this.map.set(key, value);
+//   const keys = this.map.keys();
+//   while (this.map.size > this.capacity) {
+//     //当map存储超出限制
+//     this.map.delete(keys.next().value);
+//   }
+// };
+
+var LRUCache = function (capacity) {
+  //存储
+  this.map = new Map();
+  this.capacity = capacity;
+};
+LRUCache.prototype.get = function (key) {
+  const value = this.map.get(key);
+  if (typeof value === "undefined") {
+    return -1;
+  }
+  this.map.delete(key);
+  this.map.set(key, value);
+  return value;
 };
 
-/** 
- * @param {number} key
- * @return {number}
- */
-LRUCache.prototype.get = function(key) {
-   const value = this.map.get(key)
-   if(typeof value === 'undefined') return -1
-    this.map.delete(key)
-    this.map.set(key,value)
-    return value
-};
-
-/** 
- * @param {number} key 
- * @param {number} value
- * @return {void}
- */
-LRUCache.prototype.put = function(key, value) {
-  if(this.map.has(key)) {
-    this.map.delete(key)
+LRUCache.prototype.put = function (key, value) {
+  if (this.map.has(key)) {
+    this.map.delete(key);
   }
-  this.map.set(key,value)
-  const keys = this.map.keys()
-  while(this.map.size > this.capacity) {
-    //当map存储超出限制
-    this.map.delete(keys.next().value)
+  this.map.set(key, value);
+  const keys = this.map.keys();
+  while (this.map.size > this.capacity) {
+    this.map.delete(keys.next().value);
   }
-
 };
 
 /**
@@ -50,4 +75,3 @@ LRUCache.prototype.put = function(key, value) {
  * obj.put(key,value)
  */
 // @lc code=end
-

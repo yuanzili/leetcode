@@ -50,24 +50,56 @@
 //   return dyNode.next
 
 // };
-var reverseBetween = function(head, left, right) {
-   let dyListNode = new ListNode(-1,head)
-   let pre = dyListNode
-   //走到left前一位
-   for(let i=0;i<left-1;i++) {
-     pre = pre.next
-   }
-   //操作需要反转的链条
-   //cur 是第一位
-   let cur = pre.next
-   for(let i=0;i<right-left;i++) {
-     const next = cur.next
-     cur.next = next.next
-     next.next = pre.next
-     pre.next = next
-   }
+// var reverseBetween = function (head, left, right) {
+//   let dyListNode = new ListNode(-1, head);
+//   let pre = dyListNode;
+//   //走到left前一位
+//   for (let i = 0; i < left - 1; i++) {
+//     pre = pre.next;
+//   }
+//   //操作需要反转的链条
+//   //cur 是第一位
+//   let cur = pre.next;
+//   for (let i = 0; i < right - left; i++) {
+//     const next = cur.next;
+//     cur.next = next.next;
+//     next.next = pre.next;
+//     pre.next = next;
+//   }
 
-   return dyListNode.next
- }
+//   return dyListNode.next;
+// };
+
+var reverseBetween = function (head, left, right) {
+  let listNode = new ListNode(-1, head);
+  let leftNode = listNode;
+  for (let i = 0; i < left - 1; i++) {
+    leftNode = leftNode.next;
+  }
+  let rightNode = leftNode;
+  for (let i = 0; i <= right - left; i++) {
+    rightNode = rightNode.next;
+  }
+  //起点，也是反转后的重点
+  let cutNode = leftNode.next;
+  //right后面截取的部分
+  let endNode = rightNode.next;
+  //截断
+  leftNode.next = null;
+  rightNode.next = null;
+  function reverse(head) {
+    let tem = null;
+    let cur = head;
+    while (cur) {
+      const next = cur.next;
+      cur.next = tem;
+      tem = cur;
+      cur = next;
+    }
+  }
+  reverse(cutNode);
+  leftNode.next = rightNode;
+  cutNode.next = endNode;
+  return listNode.next;
+};
 // @lc code=end
-
