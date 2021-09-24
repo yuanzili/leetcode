@@ -44,19 +44,37 @@
 //   return res
 // };
 
-var inorderTraversal = function(root) {
-  const res = []
-  const stack = []
-  while(root || stack.length>0) {
-    while(root) {
-      stack.push(root)
-      root = root.left
+// var inorderTraversal = function(root) {
+//   const res = []
+//   const stack = []
+//   while(root || stack.length>0) {
+//     while(root) {
+//       stack.push(root)
+//       root = root.left
+//     }
+//     root = stack.pop()
+//     res.push(root.val)
+//     root = root.right
+//   }
+//   return res
+// }
+var inorderTraversal = function (root) {
+  //中序排列  左中右
+  //压入栈中顺序 右中左
+  let stack = [];
+  let res = [];
+  if (root) stack.push(root);
+  while (stack.length) {
+    const node = stack.pop();
+    if (!node) {
+      res.push(stack.pop().val);
+      continue;
     }
-    root = stack.pop()
-    res.push(root.val)
-    root = root.right
+    if (node.right) stack.push(node.right);
+    stack.push(node);
+    stack.push(null);
+    if (node.left) stack.push(node.left);
   }
-  return res
-}
+  return res;
+};
 // @lc code=end
-
